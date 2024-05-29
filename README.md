@@ -1,5 +1,5 @@
 # dukc.dev v2
 
-Different branch, do not merge until ready.
+## Beta
 
-I plan to make this an awwwards.com worthy website. I want to go for a brutalist, harsh design style. This website redesign will also be accompanied with a rebrand.
+A brutalist, harsh looking website using RGB colour schemes, inverted colours, and lots of cool animation effects (in the future)
