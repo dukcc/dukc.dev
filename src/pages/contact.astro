@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="dukc :: contact">
+  <script>
+    const discordButton = document.getElementById("discord-username");
+
+    discordButton.addEventListener("click", async () => {
+      await navigator.clipboard.writeText("dukkcc");
+    });
+  </script>
+  <div class="bg-black w-full h-fit flex items-center justify-center">
+    <h1 class="font-serif text-[29vw] leading-none">contact</h1>
+  </div>
+  <div class="grid grid-cols-3 max-[900px]:grid-cols-1 max-[900px]:grid-rows-3">
+    <div class="p-32 flex flex-col gap-32 bg-b w-full h-full text-white">
+      <svg
+        width="48"
+        height="49"
+        viewBox="0 0 48 49"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g style="mix-blend-mode:difference">
+          <path
+            d="M43 17.7758V34.5498C43 37.4493 40.6495 39.7998 37.75 39.7998H10.25C7.35049 39.7998 4.99976 37.4493 4.99976 34.5498V17.7758L23.3976 27.8951C23.7727 28.1014 24.2273 28.1014 24.6024 27.8951L43 17.7758ZM37.75 9.7998C40.6074 9.7998 42.9316 12.0826 42.9985 14.9239L24 25.3732L5.00176 14.9238L5.00437 14.8334C5.11786 12.0343 7.42298 9.7998 10.25 9.7998H37.75Z"
+            fill="white"></path>
+        </g>
+      </svg>
+      <div class="flex flex-col gap-12">
+        <h5 class="text-h5 font-bold mix-blend-difference">
+          Message me on Discord at:
+        </h5>
+        <button
+          class="text-h3 max-[1250px]:text-h5 font-bold mix-blend-difference text-left hover:translate-x-4 active:-translate-x-8 duration-200 ease-out w-fit"
+          id="discord-username"
+        >
+          dukkcc
+        </button>
+      </div>
+      <div class="flex flex-col gap-12">
+        <h5 class="text-h5 font-bold mix-blend-difference">Email me at:</h5>
+        <a
+          href="mailto:hello@dukc.dev"
+          class="text-h3 max-[1250px]:text-h5 font-bold mix-blend-difference hover:translate-x-4 active:-translate-x-8 duration-200 ease-out w-fit"
+          >hello@dukc.dev
+        </a>
+      </div>
+    </div>
+
+    <div class="p-32 flex flex-col gap-12 bg-g text-black w-full h-full">
+      <svg
+        width="48"
+        height="49"
+        viewBox="0 0 48 49"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M17.75 6.7998C17.0596 6.7998 16.5 7.35945 16.5 8.0498V14.7998H12.25C8.79822 14.7998 6 17.598 6 21.0498V34.5498C6 38.0016 8.79822 40.7998 12.25 40.7998H35.75C39.2018 40.7998 42 38.0016 42 34.5498V21.0498C42 17.598 39.2018 14.7998 35.75 14.7998H31.5V8.0498C31.5 7.35945 30.9404 6.7998 30.25 6.7998H17.75ZM29 14.7998H19V9.2998H29V14.7998Z"
+          fill="black"></path>
+      </svg>
+      <p class="text-body leading-[200%]">
+        The services I offer are: <br />
+        - UI design or website design <br />
+        - Full static website* <br />
+        I can also do both for you, making a web design then turning it into a static
+        website.
+      </p>
+      <p class="text-sub leading-[200%]">
+        *I mainly use Next.js, but with front-end work I could do any framework
+        if it's fine that I just work on the HTML. I am familiar with React
+        (next.js), Vue (nuxt.js), and Astro. I use Tailwind CSS for styling. I
+        also can build you a post management system using markdown files in the
+        root. I guess that makes it a dynamic website, but it's still pretty
+        static.
+      </p>
+    </div>
+
+    <div class="flex flex-col bg-r w-full h-full">
+      <a
+        href="https://www.youtube.com/channel/UCHaYKedgxbZ2GenK3_3rNyw"
+        target="_blank"
+        class="bg-cover bg-center p-32 flex gap-12 justify-start items-end w-full h-full border-b-[5px] hover:border-b-[25px] duration-200 ease-out border-b-[#00ffff]"
+      >
+        <h3
+          class="text-h3 max-[800px]:text-h4 font-bold text-white mix-blend-difference"
+        >
+          YouTube
+        </h3>
+      </a>
+      <a
+        href="https://discord.gg/UWCJbNVrKh"
+        target="_blank"
+        class="bg-cover bg-center p-32 flex gap-12 justify-start items-end w-full h-full border-b-[5px] hover:border-b-[25px] duration-200 ease-out border-b-[#00ffff]"
+      >
+        <h3
+          class="text-h3 max-[800px]:text-h4 font-bold text-white mix-blend-difference"
+        >
+          Discord Server
+        </h3>
+      </a>
+    </div>
+  </div>
+</Layout>

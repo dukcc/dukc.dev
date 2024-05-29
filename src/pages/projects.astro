@@ -1,0 +1,29 @@
+---
+import PostItem from "../components/ui/PostItem";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const allProjects = await getCollection("projects");
+const colors = ["#ff0000", "#00ff00", "#0000ff"];
+---
+
+<Layout title="dukc :: projects">
+  <div class="bg-black w-full h-fit flex items-center justify-center">
+    <h1 class="font-serif text-[26vw] leading-[120%]">projects</h1>
+  </div>
+  <div class="flex flex-col gap-12 p-32 max-[750px]:px-0 min-h-screen">
+    {
+      allProjects.map((project, index) => {
+        const color = colors[index % colors.length];
+        return (
+          <PostItem
+            title={project.data.title}
+            description={project.data.description}
+            link={`/project/${project.slug}`}
+            colour={color}
+          />
+        );
+      })
+    }
+  </div>
+</Layout>

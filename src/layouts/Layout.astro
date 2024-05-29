@@ -1,0 +1,40 @@
+---
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/bodoni-moda/opsz.css";
+import SmoothScrolling from "../components/SmoothScrolling";
+import NavDock from "../components/ui/NavDock";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const currentUrl = new URL(Astro.request.url).pathname;
+---
+
+<!doctype html>
+<html lang="en" class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="bg-black text-white overflow-x-hidden font-sans selection:bg-white selection:text-black"
+  >
+    <SmoothScrolling client:load>
+      <NavDock currentUrl={currentUrl} />
+      <slot />
+      <footer
+        class="p-32 pb-72 bg-black flex max-[700px]:flex-col max-[700px]:gap-y-16 justify-between"
+      >
+        <h1 class="font-bold font-serif text-[86px]">dukc</h1>
+        <p class="text-body">may 2024</p>
+        <p class="text-body">website v6</p>
+        <a href="#" class="text-body h-fit"> view source </a>
+      </footer>
+    </SmoothScrolling>
+  </body>
+</html>
