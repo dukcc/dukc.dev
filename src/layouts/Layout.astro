@@ -25,7 +25,7 @@ const currentUrl = new URL(Astro.request.url).pathname;
     class="bg-black text-white overflow-x-hidden font-sans selection:bg-white selection:text-black"
   >
     <SmoothScrolling client:load>
-      <NavDock currentUrl={currentUrl} />
+      <NavDock client:load currentUrl={currentUrl} />
       <slot />
       <footer
         class="p-32 pb-72 bg-black flex max-[700px]:flex-col max-[700px]:gap-y-16 justify-between"

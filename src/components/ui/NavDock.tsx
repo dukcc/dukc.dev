@@ -2,9 +2,18 @@ import { useState } from "react";
 
 export default function NavDock({ currentUrl }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
-    <nav className="z-50 fixed bottom-0 left-1/2 transform -translate-x-1/2 mb-24 bg-white mix-blend-difference px-32 py-12 flex max-[500px]:flex-col gap-24">
-      <div className={isOpen ? "flex gap-24" : "hidden"}>
+    <nav
+      className={`z-50 fixed bottom-0 left-1/2 transform -translate-x-1/2 mb-24 bg-white ${
+        isOpen ? "" : "mix-blend-difference"
+      } px-32 py-12 flex max-[500px]:flex-col gap-24`}
+    >
+      <div
+        className={`gap-24 min-[500px]:flex ${
+          isOpen ? "max-[500px]:flex-col flex gap-32" : "max-[500px]:hidden"
+        }`}
+      >
         <a
           href="/"
           className={`text-body text-white mix-blend-difference ${
@@ -53,6 +62,7 @@ export default function NavDock({ currentUrl }) {
         >
           contact
         </a>
+        <div className="w-full h-[1px] bg-black min-[500px]:hidden"></div>
       </div>
       <div className="flex gap-32">
         <a
@@ -63,9 +73,10 @@ export default function NavDock({ currentUrl }) {
         </a>
         <button
           onClick={() => {
-            setIsOpen(true);
+            setIsOpen(!isOpen);
+            console.log("asdy7pasu78d");
           }}
-          className="min-[500px]:hidden hover:scale-110 active:scale-90 duration-200 ease-out"
+          className="min-[500px]:hidden hover:scale-110 active:scale-90 duration-200 ease-out size-20"
         >
           <svg
             width="20"
