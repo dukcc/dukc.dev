@@ -13,8 +13,38 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={`dukc :: ${entry.data.title}`}>
-  <main class="flex flex-col p-32 min-h-screen">
-    <h1 class="text-h1 font-bold font-serif">{entry.data.title}</h1>
-    <Content class="text-body leading-[250%]" />
+  <main class="flex flex-col min-h-screen">
+    <div
+      class="w-full h-[50vh] flex justify-between items-end p-32 bg-cover"
+      style={`background-image: url("${entry.data.image}");`}
+    >
+      <h1
+        class="text-h1 font-bold font-serif text-white mix-blend-difference leading-none"
+      >
+        {entry.data.title}
+      </h1>
+      <p class="text-body text-white mix-blend-difference leading-none">
+        {entry.data.date}
+      </p>
+      {
+        entry.data.tags.map((tag) => (
+          <p class="text-body text-white mix-blend-difference leading-none">
+            {tag}
+          </p>
+        ))
+      }
+    </div>
+    <div class="flex gap-24 p-32">
+      <div class="flex flex-col">
+        <Content class="text-body leading-[250%]" />
+      </div>
+      <div class="flex flex-col gap-24">
+        {
+          entry.data.images.map((imageSrc) => (
+            <img src={imageSrc} alt="" class="w-full h-auto" />
+          ))
+        }
+      </div>
+    </div>
   </main>
 </Layout>
