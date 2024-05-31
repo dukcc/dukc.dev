@@ -1,4 +1,5 @@
 ---
+import HyperlinkButton from "../components/ui/HyperlinkButton";
 import IndexHorizontalScroll from "../components/ui/IndexHorizontalScroll";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
@@ -48,7 +49,7 @@ const allProjects = await getCollection("projects");
             return (
               <a
                 href={`/project/${project.slug}`}
-                class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:invert duration-200 ease-out`}
+                class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:invert hover:scale-110 active:scale-90 hover:z-40 duration-200 ease-out`}
                 style={`background-image: url("${project.data.image}");`}
               >
                 <h3 class="text-h3 font-bold text-white mix-blend-difference">
@@ -60,7 +61,7 @@ const allProjects = await getCollection("projects");
       }
       <a
         href={`/projects`}
-        class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-r bg-cover bg-center hover:invert duration-200 ease-out`}
+        class={`bg-r p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:invert hover:scale-110 active:scale-90 hover:z-40 duration-200 ease-out`}
       >
         <h3 class="text-h3 font-bold text-white mix-blend-difference">
           All Projects
@@ -78,14 +79,17 @@ const allProjects = await getCollection("projects");
           to quickly apply a Figma design into a simple static website in a
           couple hours.
         </p>
+        <HyperlinkButton text="View full bio" link="/about" />
       </div><div
         class="bg-b p-32 flex flex-col gap-12 justify-center max-[920px]:h-full text-white"
       >
         <h3 class="text-h3 font-bold mix-blend-difference">Contact</h3><p
           class="text-body leading-[200%] mix-blend-difference"
         >
-          I am currently not available to work.
+          I'll make you a UI design, web design, or a web design including a
+          full static website.
         </p>
+        <HyperlinkButton text="Contact" link="/contact" colour="yellow" />
       </div>
     </div>
   </div>

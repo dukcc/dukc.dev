@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  --swup-overlay-theme-color: #fff;
+  --swup-overlay-theme-duration: 1s;
+  --swup-overlay-theme-delay: 0s;
+  --swup-overlay-theme-scale: 1.2;
+  --swup-overlay-theme-skew: 0deg;
+}
