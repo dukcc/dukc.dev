@@ -12,7 +12,7 @@ export default function HyperlinkButton({
   return (
     <a
       href={link}
-      className="flex gap-6 body group active:scale-90 duration-200 ease-out w-fit h-fit"
+      className="flex gap-6 text-body group active:scale-90 duration-200 ease-out w-fit h-fit"
       style={{ color: colour }}
       target={newTab ? "_blank" : "_self"}
     >

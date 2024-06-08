@@ -4,6 +4,7 @@ import "@fontsource-variable/manrope";
 import "@fontsource-variable/bodoni-moda/opsz.css";
 import SmoothScrolling from "../components/SmoothScrolling";
 import NavDock from "../components/ui/NavDock";
+import HyperlinkButton from "../components/ui/HyperlinkButton";
 interface Props {
   title: string;
 }
@@ -34,7 +35,12 @@ const currentUrl = new URL(Astro.request.url).pathname;
         <h1 class="font-bold font-serif text-[86px] leading-none">dukc</h1>
         <p class="text-body">may 2024</p>
         <p class="text-body">website v6</p>
-        <a href="#" class="text-body h-fit"> view source </a>
+        <HyperlinkButton
+          link="https://github.com/dukcc/v2-dukc.dev"
+          colour="white"
+          text="view source"
+          newTab
+        />
         <div class="flex gap-16 max-[850px]:gap-32">
           <a
             href="https://www.youtube.com/@dukkcc"
