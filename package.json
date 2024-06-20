@@ -20,6 +20,7 @@
     "@studio-freight/react-lenis": "^0.0.47",
     "@swup/astro": "^1.4.1",
     "@swup/overlay-theme": "^2.0.0",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "astro": "^4.6.3",

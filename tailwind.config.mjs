@@ -53,7 +53,21 @@ export default {
         g: "#00FF00",
         b: "#0000FF",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: "#ffffff",
+            fontFamily: '"Manrope Variable"',
+            a: {
+              color: "#00ff00",
+              "&:hover": {
+                color: "#ff00ff",
+              },
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

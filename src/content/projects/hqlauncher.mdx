@@ -1,39 +1,40 @@
 ---
 title: "HQLauncher"
 featured: true
-image: "/projects/twilight-04.jpg"
+image: "/projects/hqlauncher/cover.png"
 images:
-  - "/projects/metallic-09.jpg"
-  - "/projects/neon-05.jpg"
+  - "/projects/hqlauncher/Instances.png"
+  - "/projects/hqlauncher/Settings.png"
+  - "/projects/hqlauncher/Accounts.png"
+  - "/projects/hqlauncher/InstanceConsole.png"
+  - "/projects/hqlauncher/InstanceMods.png"
+  - "/projects/hqlauncher/InstanceScreenshots.png"
+  - "/projects/hqlauncher/InstanceSettings.png"
 date: "2023-08-21"
 description: "A Minecraft launcher, with modern UI, and modern features."
 tags:
   - "App"
 ---
 
-# HQLauncher Design
+import MDXYoutubeEmbed from "../../components/MDXYouTubeEmbed";
 
-HQLauncher started as my first ever concept. And now I'm making it real.
+<MDXYoutubeEmbed id="94ZfFKeZ8KE" />
 
-The goal of HQL is to make a functional Minecraft launcher, one that has way more useful tools to handle multiple instances, mods, packs, skins, and accounts.
+#### HQLauncher Design
 
-We already have this, with other 3rd party launchers, so I wanted to make something like that, but with better UI, and with even more features.
+HQLauncher is a Minecraft launcher, with modern UI, and modern features. It started as my first, serious concept. Today, it is currently in development, being turned into a real Minecraft Launcher. This post covers the design of HQL, you can see development progress on the DuckyHQ blog.
 
-### HQLauncher is now in development.
+HQLauncher is under DuckyHQ, it uses MorphUI, and the classic DuckyHQ geometric logo, resembling M for Minecraft.
 
-[Contribute to the project now. (Click)](https://github.com/dukcc/HQLauncher)
+The design uses a global sidebar on the left, with icons as the pages. The main content is on the right, usually with an action bar too. On other pages, such as instance settings, the sidebar can change to the subpages. It is planned for the app to be customizable, with accent and background customization.
 
-## Front-end Design Progress
+#### Old Design
 
-Main instances page, controls will appear on hover.
-![](https://i.imgur.com/lhn2xe9.png)
-Create instance page, with the ability to create custom vanilla/modded instances, or import modpacks from Modrinth or Curseforge.
-![](https://i.imgur.com/oIfrh6j.png)
-![](https://i.imgur.com/1FTt2JJ.png)
-Accounts page, to easily switch between accounts and skins. (subject to change)
-![](https://i.imgur.com/GLHjrcs.png)
-Launcher settings, ability to customize launcher, and Java settings.
-![](https://i.imgur.com/ujO0PCM.png)
-![](https://i.imgur.com/CDXuQ7F.png)
-News page for HQL and Minecraft.
-![](https://i.imgur.com/1BaVSA9.png)
+I've came pretty far since I first made the original design. The current version has been redesigned with MorphUI, but I still kept the old layout.
+
+![Old hql design](/public/projects/hqlauncher/OldInstances.png)
+
+<sub>
+  Designed with Figma, animated with After Effects, coded with Next.js,
+  Electron, & Tailwind CSS
+</sub>

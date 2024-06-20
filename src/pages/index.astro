@@ -5,6 +5,11 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const allProjects = await getCollection("projects");
+allProjects.sort((a, b) => {
+  const dateA = Date.parse(a.data.date);
+  const dateB = Date.parse(b.data.date);
+  return dateA > dateB? -1 : dateA < dateB? 1 : 0;
+});
 ---
 
 <Layout title="dukc :: index">
@@ -49,7 +54,7 @@ const allProjects = await getCollection("projects");
             return (
               <a
                 href={`/project/${project.slug}`}
-                class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:invert hover:scale-110 active:scale-90 hover:z-40 duration-200 ease-out`}
+                class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:scale-105 active:scale-90 hover:z-40 duration-200 ease-out`}
                 style={`background-image: url("${project.data.image}");`}
               >
                 <h3 class="text-h3 font-bold text-white mix-blend-difference">
@@ -61,7 +66,7 @@ const allProjects = await getCollection("projects");
       }
       <a
         href={`/projects`}
-        class={`bg-r p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:invert hover:scale-110 active:scale-90 hover:z-40 duration-200 ease-out`}
+        class={`bg-r p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center hover:scale-105 active:scale-90 hover:z-40 duration-200 ease-out`}
       >
         <h3 class="text-h3 font-bold text-white mix-blend-difference">
           All Projects

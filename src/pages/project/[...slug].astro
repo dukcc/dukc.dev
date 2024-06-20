@@ -15,7 +15,7 @@ const { Content } = await entry.render();
 <Layout title={`dukc :: ${entry.data.title}`}>
   <main class="flex flex-col min-h-screen">
     <div
-      class="w-full h-[50vh] flex justify-between items-end p-32 bg-cover"
+      class="w-full h-[50vh] flex justify-between items-end p-32 bg-cover bg-center"
       style={`background-image: url("${entry.data.image}");`}
     >
       <h1
@@ -34,14 +34,16 @@ const { Content } = await entry.render();
         ))
       }
     </div>
-    <div class="flex gap-24 p-32">
-      <div class="flex flex-col">
-        <Content class="text-body leading-[250%]" />
-      </div>
-      <div class="flex flex-col gap-24">
+    <div class="grid grid-cols-3 gap-24 p-32">
+      <article class="col-span-1 w-full prose prose-lead:leading-[250%] prose-headings:text-white prose-h1:text-h1 prose-h2:text-h2 prose-h3:text-h3 prose-h4:text-h4 prose-h5:text-h5 flex flex-col">
+        <Content class="text-body w-full" />
+      </article>
+      <div id="image-gallery" class="col-span-2 w-full grid grid-cols-2 gap-12">
         {
-          entry.data.images.map((imageSrc) => (
-            <img src={imageSrc} alt="" class="w-full h-auto" />
+          entry.data.images.map((image, index) => (
+            <a href={image} target="_blank">
+              <img src={image} alt="" class="w-full h-auto" />
+            </a>
           ))
         }
       </div>
