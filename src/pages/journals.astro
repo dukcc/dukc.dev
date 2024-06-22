@@ -4,24 +4,44 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const allJournals = await getCollection("journal");
-const colors = ["#ff0000", "#00ff00", "#0000ff"];
+const colours = ["#ff0000", "#00ff00", "#0000ff"];
 ---
 
 <Layout title="dukc :: projects">
+  <script>
+    import { gsap } from "gsap"; 
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      gsap.from(".post-item", {
+        duration: 1,
+        scale: 0.75,
+        opacity: 0,
+        stagger: 0.05,
+        ease: "power4.out",
+      });
+  });
+  </script>
   <div class="bg-black w-full h-fit flex items-center justify-center">
     <h1 class="font-serif text-[28vw] leading-[120%]">journal</h1>
   </div>
   <div class="flex flex-col gap-12 p-32 max-[750px]:px-0 min-h-screen">
     {
       allJournals.map((journal, index) => {
-        const color = colors[index % colors.length];
+        const colour = colours[index % colours.length];
         return (
-          <PostItem
+          <div class="w-full h-fit group post-item">
+            <PostItem
             title={journal.data.title}
             description={journal.data.description}
             link={`/journal/${journal.slug}`}
-            colour={color}
+            colour={colour}
           />
+          <img
+            src={journal.data.image}
+            alt="image"
+            class="absolute pointer-events-none group-hover:opacity-100 opacity-0 duration-150 ease-out aspect-video h-[50vh] w-auto post-item-image z-50"
+          />
+          </div>
         );
       })
     }

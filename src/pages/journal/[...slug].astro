@@ -19,7 +19,7 @@ interface JournalEntry {
   };
 }
 
-const { entry }: {entry: JournalEntry} = Astro.props;
+const { entry }: { entry: JournalEntry } = Astro.props;
 // @ts-ignore
 const { Content } = await entry.render();
 ---
@@ -46,11 +46,18 @@ const { Content } = await entry.render();
         ))
       }
     </div>
-    <div class="grid grid-cols-3 max-[1150px]:grid-cols-2 max-[530px]:grid-cols-1 gap-24 p-32 max-[1150px]:p-16">
-      <article class="col-span-1 w-full prose prose-lead:leading-[250%] prose-headings:text-white prose-h1:text-h1 prose-h2:text-h2 prose-h3:text-h3 prose-h4:text-h4 prose-h5:text-h5 flex flex-col">
+    <div
+      class="grid grid-cols-3 max-[1150px]:grid-cols-2 max-[530px]:grid-cols-1 gap-24 p-32 max-[1150px]:p-16"
+    >
+      <article
+        class="col-span-1 w-full prose prose-lead:leading-[250%] prose-headings:text-white prose-h1:text-h1 prose-h2:text-h2 prose-h3:text-h3 prose-h4:text-h4 prose-h5:text-h5 flex flex-col"
+      >
         <Content class="text-body w-full" />
       </article>
-      <div id="image-gallery" class="col-span-2 max-[1150px]:col-span-1 w-full grid grid-cols-2 max-[1150px]:grid-cols-1 gap-12">
+      <div
+        id="image-gallery"
+        class="col-span-2 max-[1150px]:col-span-1 w-full grid grid-cols-2 max-[1150px]:grid-cols-1 gap-12"
+      >
         {
           entry.data.images.map((image, index) => (
             <a href={image} target="_blank">
@@ -59,7 +66,6 @@ const { Content } = await entry.render();
           ))
         }
       </div>
-    </div>
     </div>
   </main>
 </Layout>

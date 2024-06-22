@@ -10,29 +10,47 @@ allProjects.sort((a, b) => {
   return dateA > dateB? -1 : dateA < dateB? 1 : 0;
 });
 
-const colors = ["#ff0000", "#00ff00", "#0000ff"];
+const colours = ["#ff0000", "#00ff00", "#0000ff"];
 ---
 
 <Layout title="dukc :: projects">
-  
+  <script>
+    import { gsap } from "gsap"; 
+
+    document.addEventListener("DOMContentLoaded", () => {
+      gsap.from(".post-item", {
+        duration: 1,
+        scale: 0.75,
+        opacity: 0,
+        stagger: 0.05,
+        ease: "power4.out",
+      });
+  });
+  </script>
   <div class="bg-black w-full h-fit flex items-center justify-center">
     <h1 class="font-serif text-[26vw] leading-[120%]">projects</h1>
   </div>
   <div class="flex flex-col gap-12 p-32 max-[750px]:px-0 min-h-screen">
     {
       allProjects.map((project, index) => {
-        const color = colors[index % colors.length];
+        const colour = colours[index % colours.length];
         return (
-          <PostItem
-            title={project.data.title}
-            description={project.data.description}
-            link={`/project/${project.slug}`}
-            colour={color}
-            image={project.data.image}
-            cursorPosition={{x: 159, y:952}}
-          />
+          <div class="w-full h-fit group post-item">
+            <PostItem
+              title={project.data.title}
+              description={project.data.description}
+              link={`/project/${project.slug}`}
+              colour={colour}
+            />
+            <img
+              src={project.data.image}
+              alt={project.data.title}
+              class="absolute pointer-events-none group-hover:opacity-100 opacity-0 duration-150 ease-out aspect-video h-[50vh] w-auto post-item-image z-50"
+            />
+          </div>
         );
       })
     }
-  </div>
+    
+</script>
 </Layout>

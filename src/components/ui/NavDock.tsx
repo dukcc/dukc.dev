@@ -2,6 +2,9 @@ import { useState } from "react";
 
 export default function NavDock({ currentUrl }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+const handleLinkClick = () => {
+    setIsOpen(false); // Close the nav dock
+  };
 
   return (
     <nav
@@ -16,6 +19,7 @@ export default function NavDock({ currentUrl }) {
       >
         <a
           href="/"
+          onClick={handleLinkClick} 
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/" ? "font-black" : ""
           }`}
@@ -24,6 +28,7 @@ export default function NavDock({ currentUrl }) {
         </a>
         <a
           href="/about"
+          onClick={handleLinkClick} 
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/about" ? "font-black" : ""
           }`}
@@ -32,6 +37,7 @@ export default function NavDock({ currentUrl }) {
         </a>
         <a
           href="/projects"
+          onClick={handleLinkClick} 
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/projects" ? "font-black" : ""
           }`}
@@ -40,6 +46,7 @@ export default function NavDock({ currentUrl }) {
         </a>
         <a
           href="/organizations"
+          onClick={handleLinkClick} 
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/organizations" ? "font-black" : ""
           }`}
@@ -48,6 +55,7 @@ export default function NavDock({ currentUrl }) {
         </a>
         <a
           href="/journals"
+          onClick={handleLinkClick} 
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/journals" ? "font-black" : ""
           }`}
@@ -56,6 +64,7 @@ export default function NavDock({ currentUrl }) {
         </a>
         <a
           href="/contact"
+          onClick={handleLinkClick} 
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/contact" ? "font-black" : ""
           }`}
@@ -67,6 +76,7 @@ export default function NavDock({ currentUrl }) {
       <div className="flex gap-32">
         <a
           href="/"
+          onClick={handleLinkClick} 
           className="text-body text-white mix-blend-difference min-[500px]:hidden"
         >
           dukc
@@ -74,7 +84,6 @@ export default function NavDock({ currentUrl }) {
         <button
           onClick={() => {
             setIsOpen(!isOpen);
-            console.log("asdy7pasu78d");
           }}
           className="min-[500px]:hidden hover:scale-110 active:scale-90 duration-200 ease-out size-20"
         >
