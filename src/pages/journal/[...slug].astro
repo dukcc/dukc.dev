@@ -2,24 +2,36 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
-  const projectEntries = await getCollection("projects");
-  return projectEntries.map((entry) => ({
+  const journalEntries = await getCollection("journal");
+  return journalEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
-const { entry } = Astro.props;
+interface JournalEntry {
+  data: {
+    title: string;
+    tags: string[];
+    image: string;
+    date: string;
+    images: string[];
+    description: string;
+  };
+}
+
+const { entry }: {entry: JournalEntry} = Astro.props;
+// @ts-ignore
 const { Content } = await entry.render();
 ---
 
 <Layout title={`dukc :: ${entry.data.title}`}>
   <main class="flex flex-col min-h-screen">
     <div
-      class="w-full h-[50vh] flex flex-wrap gap-8 justify-between items-end p-32 bg-cover bg-center"
+      class="w-full h-[50vh] flex justify-between items-end p-32 bg-cover bg-center"
       style={`background-image: url("${entry.data.image}");`}
     >
       <h1
-        class="text-h1 max-[650px]:text-h2 max-[330px]:text-h4 font-bold font-serif text-white mix-blend-difference leading-none"
+        class="text-h1 font-bold font-serif text-white mix-blend-difference leading-none"
       >
         {entry.data.title}
       </h1>
@@ -47,6 +59,7 @@ const { Content } = await entry.render();
           ))
         }
       </div>
+    </div>
     </div>
   </main>
 </Layout>

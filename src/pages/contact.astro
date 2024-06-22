@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
   <script>
     const discordButton = document.getElementById("discord-username");
 
-    discordButton.addEventListener("click", async () => {
+    discordButton?.addEventListener("click", async () => {
       await navigator.clipboard.writeText("dukkcc");
     });
   </script>

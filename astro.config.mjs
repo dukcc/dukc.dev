@@ -7,15 +7,23 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind({
-    applyBaseStyles: false
-  }), swup({
-    theme: ["overlay", {
-      direction: "to-top"
-    }],
-    containers: ["#swup"],
-    preload: {
-      hover: true
-    }
-  }), mdx()]
+  integrations: [
+    react(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    swup({
+      theme: [
+        "overlay",
+        {
+          direction: "to-top",
+        },
+      ],
+      containers: ["#swup"],
+      preload: {
+        hover: false,
+      },
+    }),
+    mdx(),
+  ],
 });

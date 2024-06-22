@@ -1,4 +1,3 @@
-import { date } from "astro/zod";
 import { z, defineCollection } from "astro:content";
 
 const projectCollection = defineCollection({
@@ -8,6 +7,7 @@ const projectCollection = defineCollection({
     tags: z.array(z.string()),
     image: z.string(),
     date: z.string(),
+    images: z.array(z.string()),
     description: z.string(),
     featured: z.boolean(),
   }),
@@ -20,8 +20,8 @@ const journalCollection = defineCollection({
     tags: z.array(z.string()),
     image: z.string(),
     date: z.string(),
+    images: z.array(z.string()),
     description: z.string(),
-    featured: z.boolean(),
   }),
 });
 export const collections = {

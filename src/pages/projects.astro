@@ -14,6 +14,7 @@ const colors = ["#ff0000", "#00ff00", "#0000ff"];
 ---
 
 <Layout title="dukc :: projects">
+  
   <div class="bg-black w-full h-fit flex items-center justify-center">
     <h1 class="font-serif text-[26vw] leading-[120%]">projects</h1>
   </div>
@@ -27,6 +28,8 @@ const colors = ["#ff0000", "#00ff00", "#0000ff"];
             description={project.data.description}
             link={`/project/${project.slug}`}
             colour={color}
+            image={project.data.image}
+            cursorPosition={{x: 159, y:952}}
           />
         );
       })
