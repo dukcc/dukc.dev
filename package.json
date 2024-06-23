@@ -14,6 +14,7 @@
     "@astrojs/mdx": "^3.1.0",
     "@astrojs/react": "^3.3.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vercel": "^7.7.1",
     "@fontsource-variable/bodoni-moda": "^5.0.15",
     "@fontsource-variable/inter": "^5.0.18",
     "@fontsource-variable/manrope": "^5.0.20",
