@@ -2,6 +2,7 @@
 import PostItem from "../components/ui/PostItem";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
 
 const allProjects = await getCollection("projects");
 allProjects.sort((a, b) => {
@@ -9,6 +10,9 @@ allProjects.sort((a, b) => {
   const dateB = Date.parse(b.data.date);
   return dateA > dateB? -1 : dateA < dateB? 1 : 0;
 });
+async function getOptimizedProjectImage(image) {
+  return await getImage({src: image, width: 1080, height: 1080, format: "webp"})
+}
 
 const colours = ["#ff0000", "#00ff00", "#0000ff"];
 ---
@@ -32,7 +36,7 @@ const colours = ["#ff0000", "#00ff00", "#0000ff"];
   </div>
   <div class="flex flex-col gap-12 p-32 max-[750px]:px-0 min-h-screen">
     {
-      allProjects.map((project, index) => {
+      allProjects.map(async (project, index) => {
         const colour = colours[index % colours.length];
         return (
           <div class="w-full h-fit group post-item">
@@ -43,7 +47,7 @@ const colours = ["#ff0000", "#00ff00", "#0000ff"];
               colour={colour}
             />
             <img
-              src={project.data.image}
+              src={(await getOptimizedProjectImage(project.data.image)).src}
               alt={project.data.title}
               class="absolute pointer-events-none group-hover:opacity-100 opacity-0 duration-150 ease-out aspect-video h-[50vh] w-auto post-item-image z-50"
             />

@@ -3,6 +3,7 @@ import HyperlinkButton from "../components/ui/HyperlinkButton";
 import IndexHorizontalScroll from "../components/ui/IndexHorizontalScroll";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
 
 const allProjects = await getCollection("projects");
 allProjects.sort((a, b) => {
@@ -10,6 +11,9 @@ allProjects.sort((a, b) => {
   const dateB = Date.parse(b.data.date);
   return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
 });
+async function getOptimizedProjectImage(image) {
+  return await getImage({src: image, width: 1080, height: 1080, format: "webp"})
+}
 ---
 
 <Layout title="dukc :: index">
@@ -76,12 +80,12 @@ allProjects.sort((a, b) => {
       {
         allProjects
           .filter((project) => project.data.featured)
-          .map((project) => {
+          .map(async (project) => {
             return (
               <a
                 href={`/project/${project.slug}`}
                 class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center index-page-item`}
-                style={`background-image: url("${project.data.image}");`}
+                style={`background-image: url("${(await getOptimizedProjectImage(project.data.image)).src}");`}
               >
                 <h3 class="text-h3 font-bold text-white mix-blend-difference">
                   {project.data.title}

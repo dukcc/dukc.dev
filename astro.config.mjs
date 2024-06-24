@@ -4,8 +4,6 @@ import tailwind from "@astrojs/tailwind";
 import swup from "@swup/astro";
 import mdx from "@astrojs/mdx";
 
-import vercel from "@astrojs/vercel/static";
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), tailwind({
@@ -18,11 +16,5 @@ export default defineConfig({
     preload: {
       hover: false
     }
-  }), mdx()],
-  output: "static",
-  adapter: vercel({
-    imagesConfig: {
-      sizes: [320, 640, 1280],
-    },
-  }),
+  }), mdx()]
 });

@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import {Image} from "astro:assets"
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const journalEntries = await getCollection("journal");
@@ -61,7 +62,7 @@ const { Content } = await entry.render();
         {
           entry.data.images.map((image, index) => (
             <a href={image} target="_blank">
-              <img src={image} alt="" class="w-full h-auto" />
+              <Image width={1080} height={1080} src={image} alt="" format="webp" class="w-full h-auto" />
             </a>
           ))
         }
