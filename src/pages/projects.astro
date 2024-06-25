@@ -2,24 +2,54 @@
 import PostItem from "../components/ui/PostItem";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import { getImage } from "astro:assets";
+import { Image } from "astro:assets";
 
 const allProjects = await getCollection("projects");
 allProjects.sort((a, b) => {
   const dateA = Date.parse(a.data.date);
   const dateB = Date.parse(b.data.date);
-  return dateA > dateB? -1 : dateA < dateB? 1 : 0;
+  return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
 });
-async function getOptimizedProjectImage(image) {
-  return await getImage({src: image, width: 1080, height: 1080, format: "webp"})
-}
 
 const colours = ["#ff0000", "#00ff00", "#0000ff"];
 ---
 
 <Layout title="dukc :: projects">
   <script>
-    import { gsap } from "gsap"; 
+    import { gsap } from "gsap";
+
+    const posts = document.querySelectorAll(".post-item");
+    const image = document.getElementById("image-follow");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      posts.forEach((post) => {
+        post.addEventListener("mouseover", () => {
+          const imageSrc = (post as HTMLDivElement).dataset.image || "";
+          const image = document.getElementById(
+            "image-follow"
+          ) as HTMLImageElement;
+
+          image.src = imageSrc;
+          image.classList.remove("hidden");
+        });
+      });
+    });
+
+    // ---
+
+    window.onpointermove = (event) => {
+      const { clientX, clientY } = event;
+
+      image?.animate(
+        {
+          left: `${clientX}px`,
+          top: `${clientY}px`,
+        },
+        { duration: 1000, fill: "forwards" }
+      );
+    };
+
+    // ---
 
     document.addEventListener("DOMContentLoaded", () => {
       gsap.from(".post-item", {
@@ -29,32 +59,37 @@ const colours = ["#ff0000", "#00ff00", "#0000ff"];
         stagger: 0.05,
         ease: "power4.out",
       });
-  });
+    });
   </script>
   <div class="bg-black w-full h-fit flex items-center justify-center">
     <h1 class="font-serif text-[26vw] leading-[120%]">projects</h1>
   </div>
   <div class="flex flex-col gap-12 p-32 max-[750px]:px-0 min-h-screen">
     {
-      allProjects.map(async (project, index) => {
+      allProjects.map((project, index) => {
         const colour = colours[index % colours.length];
         return (
-          <div class="w-full h-fit group post-item">
+          <div
+            data-image={`${project.data.image}`}
+            class={`w-full h-fit group post-item`}
+          >
             <PostItem
               title={project.data.title}
               description={project.data.description}
               link={`/project/${project.slug}`}
               colour={colour}
             />
-            <img
-              src={(await getOptimizedProjectImage(project.data.image)).src}
-              alt={project.data.title}
-              class="absolute pointer-events-none group-hover:opacity-100 opacity-0 duration-150 ease-out aspect-video h-[50vh] w-auto post-item-image z-50"
-            />
           </div>
         );
       })
     }
-    
-</script>
+  </div>
+  <Image
+    src="/projects/neon-05.jpg"
+    alt=""
+    width={1080}
+    height={1080}
+    class={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 aspect-video w-[32vw] h-auto pointer-events-none hidden`}
+    id="image-follow"
+  />
 </Layout>

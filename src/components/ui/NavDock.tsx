@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function NavDock({ currentUrl }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-const handleLinkClick = () => {
+  const handleLinkClick = () => {
     setIsOpen(false); // Close the nav dock
   };
 
@@ -19,7 +19,8 @@ const handleLinkClick = () => {
       >
         <a
           href="/"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
+          data-astro-reload
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/" ? "font-black" : ""
           }`}
@@ -28,7 +29,8 @@ const handleLinkClick = () => {
         </a>
         <a
           href="/about"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
+          data-astro-reload
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/about" ? "font-black" : ""
           }`}
@@ -37,7 +39,8 @@ const handleLinkClick = () => {
         </a>
         <a
           href="/projects"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
+          data-astro-reload
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/projects" ? "font-black" : ""
           }`}
@@ -46,7 +49,8 @@ const handleLinkClick = () => {
         </a>
         <a
           href="/organizations"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
+          data-astro-reload
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/organizations" ? "font-black" : ""
           }`}
@@ -55,7 +59,8 @@ const handleLinkClick = () => {
         </a>
         <a
           href="/journals"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
+          data-astro-reload
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/journals" ? "font-black" : ""
           }`}
@@ -64,7 +69,8 @@ const handleLinkClick = () => {
         </a>
         <a
           href="/contact"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
+          data-astro-reload
           className={`text-body text-white mix-blend-difference ${
             currentUrl === "/contact" ? "font-black" : ""
           }`}
@@ -76,7 +82,7 @@ const handleLinkClick = () => {
       <div className="flex gap-32">
         <a
           href="/"
-          onClick={handleLinkClick} 
+          onClick={handleLinkClick}
           className="text-body text-white mix-blend-difference min-[500px]:hidden"
         >
           dukc

@@ -12,19 +12,23 @@ allProjects.sort((a, b) => {
   return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
 });
 async function getOptimizedProjectImage(image) {
-  return await getImage({src: image, width: 1080, height: 1080, format: "webp"})
+  return await getImage({
+    src: image,
+    width: 1080,
+    height: 1080,
+    format: "webp",
+  });
 }
 ---
 
 <Layout title="dukc :: index">
   <script>
-    import { gsap } from "gsap"; 
+    import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import { Observer } from "gsap/Observer";
 
-    gsap.registerPlugin(ScrollTrigger, Observer) 
+    gsap.registerPlugin(ScrollTrigger, Observer);
     document.addEventListener("DOMContentLoaded", () => {
-      
       gsap.from(".landingBox", {
         duration: 3,
         y: 1080,
@@ -42,23 +46,23 @@ async function getOptimizedProjectImage(image) {
         opacity: 0,
         stagger: 0.05,
         ease: "power4.out",
-        scrollTrigger: '.index-page-content'
+        scrollTrigger: ".index-page-content",
       });
       document.querySelectorAll(".index-page-item").forEach((element) => {
         element.addEventListener("mouseover", () => {
-          gsap.to(element, { scale: 1.05, duration: 0.5, ease: "power4.out" });
+          gsap.to(element, { scale: 1.05, duration: 0.5, ease: "power3.out" });
           // @ts-ignore
-          element.style.zIndex = "40"
-        })
-      })
-     document.querySelectorAll(".index-page-item").forEach((element) => {
+          element.style.zIndex = "40";
+        });
+      });
+      document.querySelectorAll(".index-page-item").forEach((element) => {
         element.addEventListener("mouseout", () => {
-          gsap.to(element, { scale: 1, duration: 0.5, ease: "power4.out" });
+          gsap.to(element, { scale: 1, duration: 0.5, ease: "power3.out" });
           // @ts-ignore
-          element.style.zIndex = "0"
-        })
-      })
-  });
+          element.style.zIndex = "0";
+        });
+      });
+    });
   </script>
   <div class="h-screen w-screen flex items-center justify-center -z-20">
     <h1

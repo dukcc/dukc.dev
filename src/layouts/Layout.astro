@@ -5,6 +5,8 @@ import "@fontsource-variable/bodoni-moda/opsz.css";
 import SmoothScrolling from "../components/SmoothScrolling";
 import NavDock from "../components/ui/NavDock";
 import HyperlinkButton from "../components/ui/HyperlinkButton";
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
   title: string;
 }
@@ -28,7 +30,7 @@ const currentUrl = new URL(Astro.request.url).pathname;
   >
     <SmoothScrolling client:load>
       <NavDock client:load currentUrl={currentUrl} />
-      <div id="swup" class="transition-overlay"><slot /></div>
+      <slot />
       <footer
         class="p-32 pb-72 bg-black flex max-[850px]:flex-col max-[850px]:gap-y-24 justify-between"
       >
