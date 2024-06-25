@@ -1,5 +1,9 @@
 {
   "name": "dukc.dev",
+  "author": {
+    "name": "dukc",
+    "email": "hello@dukc.dev"
+  },
   "type": "module",
   "version": "1.0.0",
   "scripts": {
