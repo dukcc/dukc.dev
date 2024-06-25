@@ -1,5 +1,4 @@
 # dukc.dev v2
 
-## Beta
-
-A brutalist, harsh looking website using RGB colour schemes, inverted colours, and lots of cool animation effects (in the future)
+A brutalist, harsh looking website using RGB colour schemes, inverted colours, and lots of cool animation effects.
+Uses astro, mdx, tailwind, gsap, a bit of framer-motion, and react-lennis
