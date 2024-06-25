@@ -48,14 +48,14 @@ async function getOptimizedProjectImage(image) {
         ease: "power4.out",
         scrollTrigger: ".index-page-content",
       });
-      document.querySelectorAll(".index-page-item").forEach((element) => {
+      document.querySelectorAll(".index-page-item-hover").forEach((element) => {
         element.addEventListener("mouseover", () => {
-          gsap.to(element, { scale: 1.05, duration: 0.5, ease: "power3.out" });
+          gsap.to(element, { scale: 0.975, duration: 0.5, ease: "power3.out" });
           // @ts-ignore
           element.style.zIndex = "40";
         });
       });
-      document.querySelectorAll(".index-page-item").forEach((element) => {
+      document.querySelectorAll(".index-page-item-hover").forEach((element) => {
         element.addEventListener("mouseout", () => {
           gsap.to(element, { scale: 1, duration: 0.5, ease: "power3.out" });
           // @ts-ignore
@@ -88,7 +88,7 @@ async function getOptimizedProjectImage(image) {
             return (
               <a
                 href={`/project/${project.slug}`}
-                class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center index-page-item`}
+                class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center index-page-item index-page-item-hover`}
                 style={`background-image: url("${(await getOptimizedProjectImage(project.data.image)).src}");`}
               >
                 <h3 class="text-h3 font-bold text-white mix-blend-difference">
@@ -100,7 +100,7 @@ async function getOptimizedProjectImage(image) {
       }
       <a
         href={`/projects`}
-        class={`bg-r p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center index-page-item`}
+        class={`bg-r p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center index-page-item index-page-item-hover`}
       >
         <h3 class="text-h3 font-bold text-white mix-blend-difference">
           All Projects
