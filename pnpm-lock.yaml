@@ -60,18 +60,12 @@ importers:
         specifier: ^5.5.2
         version: 5.5.2
     devDependencies:
-      '@swup/head-plugin':
-        specifier: ^2.2.0
-        version: 2.2.0(swup@4.6.1)
       prettier:
         specifier: ^3.3.2
         version: 3.3.2
       prettier-plugin-astro:
         specifier: ^0.14.0
         version: 0.14.0
-      swup:
-        specifier: ^4.6.1
-        version: 4.6.1
 
 packages:
 
@@ -693,14 +687,6 @@ packages:
     resolution: {integrity: sha512-AO1O2fEmfUqWGjEofmPNMQRlwgZ96eB5OFsVJjeH8/RKd1/Yf4zbPnXO+r2TD4aueA6X9JRCJU2GUprI9+m8uQ==}
     deprecated: Please use @darkroom.engineering/tempus instead
 
-  '@swup/head-plugin@2.2.0':
-    resolution: {integrity: sha512-8/p86H6Ypu+peAAnRZEugOdot3IHhWRMoP/19f9ZEOqErDnIpSWHOkiTI/dWAcHZ6Gbia67fu67cgD2Rag1eKQ==}
-    peerDependencies:
-      swup: ^4.6.0
-
-  '@swup/plugin@4.0.0':
-    resolution: {integrity: sha512-3Kq31BJxnzoPg643YxGoWQggoU6VPKZpdE5CqqmP7wwkpCYTzkRmrfcQ29mGhsSS7xfS7D33iZoBiwY+wPoo2A==}
-
   '@tailwindcss/typography@0.5.13':
     resolution: {integrity: sha512-ADGcJ8dX21dVVHIwTRgzrcunY6YY9uSlAHHGVKvkA+vLc5qLwEszvKts40lx7z0qc4clpjclwLeK5rVCV2P/uw==}
     peerDependencies:
@@ -1041,9 +1027,6 @@ packages:
 
   decode-named-character-reference@1.0.2:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
-
-  delegate-it@6.1.0:
-    resolution: {integrity: sha512-sPgBvzO3GVViT1qKiuMLKnZs2HokFwCg304kv2bbG08Tm3qi9u5y5jEC7u2dR0js22i+17JTfqK0XpWop9c67w==}
 
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -1752,10 +1735,6 @@ packages:
     resolution: {integrity: sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==}
     engines: {node: '>=12'}
 
-  opencollective-postinstall@2.0.3:
-    resolution: {integrity: sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==}
-    hasBin: true
-
   ora@8.0.1:
     resolution: {integrity: sha512-ANIvzobt1rls2BDny5fWZ3ZVKyD6nscLvfFRpQgfWsythlcsVUC9kL0zq6j2Z5z9wwp1kd7wpsD/T9qNPVLCaQ==}
     engines: {node: '>=18'}
@@ -2149,9 +2128,6 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swup@4.6.1:
-    resolution: {integrity: sha512-NPjtE00n2aT0QLDChefU7d/eqqz1zwLXsCCCLz7Vi/sLoszC3eicg3oVO0uLtwM1/qz0na3nGRNw3Avwm4VSfw==}
-
   tailwindcss@3.4.4:
     resolution: {integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==}
     engines: {node: '>=14.0.0'}
@@ -2202,9 +2178,6 @@ packages:
   type-fest@2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
-
-  typed-query-selector@2.11.2:
-    resolution: {integrity: sha512-6rZP+cG3wPg2w1Zqv2VCOsSqlkGElrLSGeEkyrIU9mHG+JfQZE/6lE3oyQouz42sTS9n8fQXvwQBaVWz6dzpfQ==}
 
   typesafe-path@0.2.2:
     resolution: {integrity: sha512-OJabfkAg1WLZSqJAJ0Z6Sdt3utnbzr/jh+NAHoyWHJe8CMSy79Gm085094M9nvTPy22KzTVn5Zq5mbapCI/hPA==}
@@ -3114,15 +3087,6 @@ snapshots:
 
   '@studio-freight/tempus@0.0.38': {}
 
-  '@swup/head-plugin@2.2.0(swup@4.6.1)':
-    dependencies:
-      '@swup/plugin': 4.0.0
-      swup: 4.6.1
-
-  '@swup/plugin@4.0.0':
-    dependencies:
-      swup: 4.6.1
-
   '@tailwindcss/typography@0.5.13(tailwindcss@3.4.4)':
     dependencies:
       lodash.castarray: 4.4.0
@@ -3563,10 +3527,6 @@ snapshots:
   decode-named-character-reference@1.0.2:
     dependencies:
       character-entities: 2.0.2
-
-  delegate-it@6.1.0:
-    dependencies:
-      typed-query-selector: 2.11.2
 
   dequal@2.0.3: {}
 
@@ -4572,8 +4532,6 @@ snapshots:
     dependencies:
       mimic-fn: 4.0.0
 
-  opencollective-postinstall@2.0.3: {}
-
   ora@8.0.1:
     dependencies:
       chalk: 5.3.0
@@ -5058,12 +5016,6 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swup@4.6.1:
-    dependencies:
-      delegate-it: 6.1.0
-      opencollective-postinstall: 2.0.3
-      path-to-regexp: 6.2.2
-
   tailwindcss@3.4.4:
     dependencies:
       '@alloc/quick-lru': 5.2.0
@@ -5126,8 +5078,6 @@ snapshots:
   tslib@2.6.3: {}
 
   type-fest@2.19.0: {}
-
-  typed-query-selector@2.11.2: {}
 
   typesafe-path@0.2.2: {}
 
