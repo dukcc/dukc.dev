@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import {Image} from "astro:assets"
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const journalEntries = await getCollection("journal");
@@ -47,26 +47,12 @@ const { Content } = await entry.render();
         ))
       }
     </div>
-    <div
-      class="grid grid-cols-3 max-[1150px]:grid-cols-2 max-[530px]:grid-cols-1 gap-24 p-32 max-[1150px]:p-16"
-    >
+    <div class="flex justify-center p-32">
       <article
-        class="col-span-1 w-full prose prose-lead:leading-[250%] prose-headings:text-white prose-h1:text-h1 prose-h2:text-h2 prose-h3:text-h3 prose-h4:text-h4 prose-h5:text-h5 flex flex-col"
+        class="w-full prose-code:text-white prose-code:rounded-lg prose prose-blockquote:text-white leading-[210%] prose-headings:text-white prose-h1:text-h1 prose-h2:text-h2 prose-h3:text-h3 prose-h4:text-h4 prose-h5:text-h5 flex flex-col"
       >
         <Content class="text-body w-full" />
       </article>
-      <div
-        id="image-gallery"
-        class="col-span-2 max-[1150px]:col-span-1 w-full grid grid-cols-2 max-[1150px]:grid-cols-1 gap-12"
-      >
-        {
-          entry.data.images.map((image, index) => (
-            <a href={image} target="_blank">
-              <Image width={1080} height={1080} src={image} alt="" format="webp" class="w-full h-auto" />
-            </a>
-          ))
-        }
-      </div>
     </div>
   </main>
 </Layout>

@@ -58,7 +58,7 @@ export default function NavDock({ currentUrl }) {
           organizations
         </a>
         <a
-          href="/journals"
+          href="/journal"
           onClick={handleLinkClick}
           data-astro-reload
           className={`text-body text-white mix-blend-difference ${

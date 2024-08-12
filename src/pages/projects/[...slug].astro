@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const projectEntries = await getCollection("projects");
+  return projectEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`dukc :: ${entry.data.title}`}>
+  <main class="flex flex-col min-h-screen">
+    <div
+      class="w-full h-[50vh] flex flex-wrap gap-8 justify-between items-end p-32 bg-cover bg-center"
+      style={`background-image: url("${entry.data.image}");`}
+    >
+      <h1
+        class="text-h1 max-[650px]:text-h2 max-[330px]:text-h4 font-bold font-serif text-white mix-blend-difference leading-none"
+      >
+        {entry.data.title}
+      </h1>
+      <p class="text-body text-white mix-blend-difference leading-none">
+        {entry.data.date}
+      </p>
+      {
+        entry.data.tags.map((tag) => (
+          <p class="text-body text-white mix-blend-difference leading-none">
+            {tag}
+          </p>
+        ))
+      }
+    </div>
+    <div
+      class="grid grid-cols-3 max-[1150px]:grid-cols-2 max-[530px]:grid-cols-1 gap-24 p-32 max-[1150px]:p-16"
+    >
+      <article
+        class="col-span-1 w-full prose prose-strong:text-white prose-strong:font-bold prose-lead:leading-[250%] prose-headings:text-white prose-h1:text-h1 prose-h2:text-h2 prose-h3:text-h3 prose-h4:text-h4 prose-h5:text-h5 flex flex-col"
+      >
+        <Content class="text-body w-full" />
+      </article>
+      <div
+        id="image-gallery"
+        class="col-span-2 max-[1150px]:col-span-1 w-full grid grid-cols-2 max-[1150px]:grid-cols-1 gap-12"
+      >
+        {
+          entry.data.images.map((image, index) => (
+            <a href={image} target="_blank">
+              <Image
+                width={1080}
+                height={1080}
+                src={image}
+                alt=""
+                format="webp"
+                class="w-full h-auto"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

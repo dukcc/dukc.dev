@@ -29,12 +29,21 @@ async function getOptimizedProjectImage(image) {
 
     gsap.registerPlugin(ScrollTrigger, Observer);
     document.addEventListener("DOMContentLoaded", () => {
-      gsap.from(".landingBox", {
-        duration: 3,
-        y: 1080,
-        stagger: 0.15,
-        ease: "power4.inOut",
-      });
+      gsap.fromTo(
+        ".landingBox",
+        {
+          duration: 3,
+          y: 1080,
+          stagger: 0.15,
+          ease: "power4.inOut",
+        },
+        {
+          duration: 3,
+          y: 0,
+          stagger: 0.15,
+          ease: "power4.inOut",
+        },
+      );
       gsap.from(".landingText", {
         duration: 3,
         opacity: 0,
@@ -87,7 +96,7 @@ async function getOptimizedProjectImage(image) {
           .map(async (project) => {
             return (
               <a
-                href={`/project/${project.slug}`}
+                href={`/projects/${project.slug}`}
                 class={`p-32 flex flex-col justify-end gap-12 h-[340px] bg-cover bg-center index-page-item index-page-item-hover`}
                 style={`background-image: url("${(await getOptimizedProjectImage(project.data.image)).src}");`}
               >
@@ -113,10 +122,11 @@ async function getOptimizedProjectImage(image) {
       >
         <h3 class="text-h3 font-bold">About</h3>
         <p class="text-body leading-[200%]">
-          I am a versatile designer, specializing in UI design, web design,
-          brand design, and 3D design. I am also a front-end web developer, able
-          to quickly apply a Figma design into a simple static website in a
-          couple hours.
+          I am a creative designer, specializing in UI design, web design, brand
+          design, and 3D design. I am also a very fast web developer, able to
+          quickly apply a Figma design into a simple static website in a couple
+          hours. I am also learning Rust, and I'm trying to learn how to use it
+          to rewrite my projects in a more performant way.
         </p>
         <HyperlinkButton text="View full bio" link="/about" />
       </div><div

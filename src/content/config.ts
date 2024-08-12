@@ -20,7 +20,6 @@ const journalCollection = defineCollection({
     tags: z.array(z.string()),
     image: z.string(),
     date: z.string(),
-    images: z.array(z.string()),
     description: z.string(),
   }),
 });

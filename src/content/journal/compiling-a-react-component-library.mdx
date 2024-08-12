@@ -1,0 +1,239 @@
+---
+title: "Compiling a React Typescript Component Library"
+image: "/projects/twilight-04.jpg"
+date: "2024-08-08"
+description: "With Tailwind, Storybook, and tsup."
+tags:
+  - "react"
+  - "ui-kit"
+---
+
+Is this your first time trying to compile a React Typescript library, so you can publish it on npm? This was my first time, I found it to be very complicated, so I wanted to document my experience.
+
+For this article, we're gonna assume you have a React + Vite Storybook project with Tailwind React components, that you're using Typescript, and that your directory structure looks like this:
+```
+/
+└── /src
+    ├── /components
+    │   ├── /Button
+    │   │   ├── /Button.tsx
+    │   │   ├── /Button.stories.tsx
+    │   │   └── /index.ts
+    │   └── /index.ts
+    └── index.ts
+```
+
+### Choosing a Compiler
+
+There are many Javascript compilers out there, and finding one that handles our stack was tricky for me. I eventually found [tsup](https://github.com/egoist/tsup), which is powered by [esbuild](https://github.com/evanw/esbuild). Install as a dev dependancy it with:
+
+```bash
+pnpm add tsup -D
+```
+
+Now we have it installed! Let's add a `build` script to `package.json`:
+```json
+"scripts": {
+  "build": "tsup"
+}
+```
+
+And now let's create a tsup configuration file, named `tsup.config.ts`:
+```ts
+import { defineConfig } from "tsup";
+
+export default defineConfig({
+  entry: ["src/index.ts", "src/index.css"],
+  outDir: "dist",
+  splitting: true,
+  treeshake: true,
+  sourcemap: true,
+  clean: true,
+  dts: { resolve: true },
+  format: ["cjs", "esm"],
+  skipNodeModulesBundle: true,
+  target: "es2020",
+});
+```
+What this will do is compile your `src/index.ts` file, and all the exported files from `index.ts`, into the `dist` directory.
+
+It will compile into Common JS and ESM formats, and generate types for you, which are the `d.ts` files.
+
+Notice that we also have it to compile index.css, which is our main tailwind file containing `@tailwind core`, etc. This will compile all the tailwind classes that your project uses into normal css. Replace the filename if yours is different.
+
+### Setting up Tailwind
+
+If you want others to have the Tailwind config you used for your components, you should make a [preset](https://tailwindcss.com/docs/presets).
+
+Make a file in `src` called `tailwind-core.ts`, with your theme and other things your Tailwind config depends on:
+
+```ts
+// Example preset
+export const tailwindCore = {
+  theme: {
+    colors: {
+      r: "#ff0000",
+      g: "#00ff00",
+      b: "#0000ff",
+    }
+  },
+};
+```
+Then in your main `index.ts` file, export `tailwindCore`:
+```ts
+export * from "./components";
+export { tailwindCore } from "./tailwind-core";
+```
+
+Then you can also use this preset with the Storybook project you're currently in, this is how others will use it, but they will have a different import directory.
+
+```ts
+// tailwind.config.js
+import { tailwindCore } from "./src/tailwind-core";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./src/**/*.{ts,tsx}"],
+  presets: [tailwindCore],
+};
+```
+
+### Compiling and Testing
+
+Now you should be able to run `pnpm build`, and all your code will compile into the `dist` directory!
+
+```
+/
+└── /dist
+    ├── index.d.ts
+    ├── index.d.cts
+    ├── index.css
+    ├── index.css.map
+    ├── index.js.map
+    ├── index.js
+    ├── index.cjs.map
+    └── index.cjs
+```
+
+Now, in `package.json`, add where your compiled code will live, for all versions of JS:
+```json
+{
+  "name": "@dukc/test-component-library",
+  "description": "A React component and Tailwind style library for this article.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+}
+```
+Now let's test our project locally, to make sure it works before publishing. First, copy the directory path of where your component library lives. Then create a new React project somewhere else, we'll use Next.js as an example, make sure yours uses Tailwind.
+```bash
+pnpm dlx create-next-app@latest
+```
+
+Then in that new test project, link to your component library, using npm link (replace directory with yours):
+```bash
+pnpm link /home/dukc/Documents/GitHub/test-component-library/
+```
+
+Then you should be able to import stuff from your component library, with the name of your package. Let's try to import our Tailwind preset:
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+import { tailwindCore } from "@dukc/test-component-library";
+
+const config: Config = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  presets: [tailwindCore],
+};
+export default config;
+
+```
+
+And now you should be able to use your Tailwind styles in your test app. Let's try to import our button now (also import the compiled css):
+```tsx
+// page.tsx
+import { Button } from "@dukc/test-component-library";
+import "@dukc/test-component-library/dist/index.css";
+
+export default function Home() {
+  return (
+    <div className="bg-r flex items-center justify-center">
+      <Button>Hello World</Button>
+    </div>
+  );
+}
+```
+And it should work!
+
+### Publish your Library
+
+You've built your project, set up `package.json`, tested it with `pnpm link`, and it works. Now, let's do the last steps.
+
+Create an `.npmignore` file inside your component library, which will ignore everything that isn't your compiled code in your component library:
+```
+public
+src
+.vscode
+.storybook
+index.html
+.gitignore
+.eslintrc.cjs
+pnpm-lock.yaml
+postcss.config.js
+tailwind.config.js
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+tsup.config.ts
+vite.config.ts
+node_modules
+```
+Make sure to add any other files/directories that you have, that you don't want included in your package.
+
+Then, finish up your `package.json`, such as adding the link to your repo, keywords, your license, and the version.
+
+And make sure to add react as a peerDependancy, and remove any other dependency that is used for development that is under `dependencies`:
+```json
+{
+  "repository": "https://some-git-provider.com/test-component-library",
+  "keywords": [
+    "react",
+    "ui-kit",
+    "library",
+    "tailwind"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "private": false,
+  "author": "dukc",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": { // Only the dependencies the project uses
+    "@radix-ui/react-checkbox": "^1.1.1",
+    "class-variance-authority": "^0.7.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+}
+```
+
+Then test your package one last time, using `pnpm pack`. This will package your library, the same way that `pnpm publish` will. Look inside your packaged library, to see if the files are correct.
+
+Then create an npm account [here](https://www.npmjs.com), and login to it inside your terminal using `pnpm login`. If you have an organization [scoped package name](https://docs.npmjs.com/configuring-your-npm-client-with-your-organization-settings), you'll need to configure it: `npm config set scope <org-name>`.
+
+Then you should be able to publish!
+```bash
+pnpm publish
+```
+
+Congrats!
+
+If you want to see the source code of where I used tsup for my React Typescript library, look [here](https://github.com/bibleio/design).
