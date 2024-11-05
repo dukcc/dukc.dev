@@ -16,7 +16,7 @@ export default function IndexHorizontalScroll() {
 
   return (
     <div className="px-48 py-24 flex gap-48 bg-black justify-end">
-      {skills.map((skill, index) => {
+      {skills.map((index) => {
         return (
           <div key={index} className="flex gap-48">
             {skills.map((skill, innerIndex) => {

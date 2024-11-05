@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
   const journalEntries = await getCollection("journal");
   return journalEntries.map((entry) => ({
@@ -9,19 +10,11 @@ export async function getStaticPaths() {
     props: { entry },
   }));
 }
-interface JournalEntry {
-  data: {
-    title: string;
-    tags: string[];
-    image: string;
-    date: string;
-    images: string[];
-    description: string;
-  };
-}
 
-const { entry }: { entry: JournalEntry } = Astro.props;
-// @ts-ignore
+interface Props {
+  entry: CollectionEntry<"journal">;
+}
+const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
